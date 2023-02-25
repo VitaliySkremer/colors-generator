@@ -5,6 +5,9 @@
     :column="item"
 		@toggleLock="toggleLock"
     />
+		<button @click="setRandomColors" v-if="isMobile" class="btn__update">
+			<svg fill="#000000" viewBox="0 0 24 24" id="update-alt" data-name="Flat Line" xmlns="http://www.w3.org/2000/svg" class="icon flat-line"><path id="primary" d="M5.07,8A8,8,0,0,1,20,12" style="fill: none; stroke: rgb(0, 0, 0); stroke-linecap: round; stroke-linejoin: round; stroke-width: 2;"></path><path id="primary-2" data-name="primary" d="M18.93,16A8,8,0,0,1,4,12" style="fill: none; stroke: rgb(0, 0, 0); stroke-linecap: round; stroke-linejoin: round; stroke-width: 2;"></path><polyline id="primary-3" data-name="primary" points="5 3 5 8 10 8" style="fill: none; stroke: rgb(0, 0, 0); stroke-linecap: round; stroke-linejoin: round; stroke-width: 2;"></polyline><polyline id="primary-4" data-name="primary" points="19 21 19 16 14 16" style="fill: none; stroke: rgb(0, 0, 0); stroke-linecap: round; stroke-linejoin: round; stroke-width: 2;"></polyline></svg>
+		</button>
 </template>
 
 <script setup lang="ts">
@@ -61,7 +64,14 @@ const initColumnColors = () =>{
 	}
 }
 
+const isMobile = ref(false);
+
 onMounted(() => {
+	if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
+    // код для мобильных устройств
+		isMobile.value = true;
+  }
+
 	if(document.location.hash.length>1){
 		initColumnColors()
 	}
@@ -78,4 +88,23 @@ onMounted(() => {
 })
 
 </script>
-<style scoped></style>
+<style lang='scss' scoped>
+
+.btn__update {
+	position: fixed;
+	left: calc(var(--index)*1.5);
+	top: calc(var(--index)*1.5);
+	width: calc(var(--index)*10);
+	height: calc(var(--index) * 10);
+	border-radius: 50%;
+	background-color: transparent;
+	border: none;
+	background-color: rgba(0,0,0,.3);
+
+	svg {
+		width: calc(var(--index)*5);
+		height: calc(var(--index) * 5);
+	}
+}
+
+</style>

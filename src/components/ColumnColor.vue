@@ -139,4 +139,11 @@ const copyColor = () => {
 	opacity: 1;
 	transform: scale(1);
 }
+
+
+@media all and (max-width:600px){
+  .col{
+		flex-direction: row;
+	}
+}
 </style>

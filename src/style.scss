@@ -19,3 +19,10 @@ body {
   font-family: 'Roboto', sans-serif;
   background-color: #fefefe;
 }
+
+@media all and (max-width:600px){
+  #app {
+    display: flex;
+    flex-direction: column;
+  }
+}
